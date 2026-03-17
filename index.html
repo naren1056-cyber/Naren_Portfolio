@@ -31,12 +31,13 @@
     <p class="hero-tagline" id="hero-tagline"></p>
     <div class="hero-pills">
       <div class="hero-pill"><span class="icon">📍</span><span id="hero-location"></span></div>
+      <div class="hero-pill"><span class="icon">📞</span><span>+91-9659362360</span></div>
       <div class="hero-pill"><span class="icon">⏱</span><span>13+ Years Experience</span></div>
       <div class="hero-pill"><span class="icon">🏅</span><span>SAFe Certified PO/PM</span></div>
       <div class="hero-pill"><span class="icon">🎓</span><span>Google Digital Marketing</span></div>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-primary" id="hero-email-btn" href="#">Get in touch</a>
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
       <a class="btn btn-outline" id="hero-linkedin-btn" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
   </div>
@@ -93,6 +94,7 @@
     <p class="contact-cta" id="contact-cta"></p>
     <div class="contact-links">
       <a class="btn btn-primary" id="contact-email" href="#">Email me</a>
+      <a class="btn btn-outline" href="tel:+919659362360">📞 +91-9659362360</a>
       <a class="btn btn-outline" id="contact-linkedin" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
     </div>
   </div>
@@ -115,7 +117,6 @@
     "Hi, I'm <span class='name-highlight'>" + c.name + "</span>";
   document.getElementById("hero-tagline").textContent = c.tagline;
   document.getElementById("hero-location").textContent = c.location;
-  document.getElementById("hero-email-btn").href = "mailto:" + c.email;
   document.getElementById("hero-linkedin-btn").href = c.linkedin;
 
   document.getElementById("about-text").textContent = c.about;
