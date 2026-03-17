@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <span class="nav-name" id="nav-name"></span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span id="hero-title"></span>
+    </div>
+    <h1 id="hero-name"></h1>
+    <p class="hero-tagline" id="hero-tagline"></p>
+    <div class="hero-pills">
+      <div class="hero-pill"><span class="icon">📍</span><span id="hero-location"></span></div>
+      <div class="hero-pill"><span class="icon">⏱</span><span>13+ Years Experience</span></div>
+      <div class="hero-pill"><span class="icon">🏅</span><span>SAFe Certified PO/PM</span></div>
+      <div class="hero-pill"><span class="icon">🎓</span><span>Google Digital Marketing</span></div>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" id="hero-email-btn" href="#">Get in touch</a>
+      <a class="btn btn-outline" id="hero-linkedin-btn" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span>About Me</div>
+    <div class="section-title">Who I am</div>
+    <div class="about-grid">
+      <p class="about-text" id="about-text"></p>
+      <div>
+        <div class="sidebar-block">
+          <div class="sidebar-eyebrow gold"><span class="eyebrow-line"></span>Focus Areas</div>
+          <div class="skills-list" id="skills-list"></div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-eyebrow violet"><span class="eyebrow-line"></span>Certifications</div>
+          <div class="cert-list" id="cert-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span>Career</div>
+    <div class="section-title">Where I've worked</div>
+    <div class="exp-list" id="exp-list"></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span>Work</div>
+    <div class="section-title">Things I've shipped</div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+</section>
+
+<section id="awards">
+  <div class="container">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span>Recognition</div>
+    <div class="section-title">Awards</div>
+    <div class="awards-grid" id="awards-grid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-eyebrow"><span class="eyebrow-line"></span>Say Hello</div>
+    <div class="section-title">Let's talk</div>
+    <p class="contact-cta" id="contact-cta"></p>
+    <div class="contact-links">
+      <a class="btn btn-primary" id="contact-email" href="#">Email me</a>
+      <a class="btn btn-outline" id="contact-linkedin" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span id="footer-text"></span>
+  </div>
+</footer>
+
+<script src="content.js"></script>
+<script>
+  const c = CONTENT;
+
+  document.getElementById("page-title").textContent = c.name + " — Product Owner";
+  document.getElementById("nav-name").textContent = c.name;
+  document.getElementById("hero-title").textContent = c.title;
+  document.getElementById("hero-name").innerHTML =
+    "Hi, I'm <span class='name-highlight'>" + c.name + "</span>";
+  document.getElementById("hero-tagline").textContent = c.tagline;
+  document.getElementById("hero-location").textContent = c.location;
+  document.getElementById("hero-email-btn").href = "mailto:" + c.email;
+  document.getElementById("hero-linkedin-btn").href = c.linkedin;
+
+  document.getElementById("about-text").textContent = c.about;
+
+  const skillsList = document.getElementById("skills-list");
+  c.skills.forEach(s => {
+    const el = document.createElement("span");
+    el.className = "skill-tag";
+    el.textContent = s;
+    skillsList.appendChild(el);
+  });
+
+  const certList = document.getElementById("cert-list");
+  c.certifications.forEach(cert => {
+    certList.innerHTML += `<div class="cert-item">${cert}</div>`;
+  });
+
+  const expList = document.getElementById("exp-list");
+  c.experience.forEach(job => {
+    const highlights = job.highlights.length
+      ? `<ul class="exp-highlights">${job.highlights.map(h => `<li>${h}</li>`).join("")}</ul>`
+      : "";
+    const desc = job.description
+      ? `<p class="exp-desc">${job.description}</p>` : "";
+    expList.innerHTML += `
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">${job.role} <span class="exp-company">@ ${job.company}</span></div>
+          <div class="exp-period">${job.period}</div>
+        </div>
+        ${desc}${highlights}
+      </div>`;
+  });
+
+  const projectsGrid = document.getElementById("projects-grid");
+  c.projects.forEach(p => {
+    projectsGrid.innerHTML += `
+      <div class="project-card">
+        <div class="project-title">${p.title}</div>
+        <div class="project-desc">${p.description}</div>
+        <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join("")}</div>
+        <div class="project-outcome">${p.outcome}</div>
+        ${p.link ? `<a class="project-link" href="${p.link}" target="_blank" rel="noopener">View live ↗</a>` : ""}
+      </div>`;
+  });
+
+  const awardsGrid = document.getElementById("awards-grid");
+  const awardIcons = ["🏆", "🥇", "⭐"];
+  c.awards.forEach((a, i) => {
+    awardsGrid.innerHTML += `
+      <div class="award-card">
+        <div class="award-icon">${awardIcons[i % awardIcons.length]}</div>
+        <div>
+          <div class="award-title">${a.title}</div>
+          <div class="award-org">${a.org}</div>
+        </div>
+      </div>`;
+  });
+
+  document.getElementById("contact-cta").textContent = c.cta;
+  document.getElementById("contact-email").href = "mailto:" + c.email;
+  document.getElementById("contact-linkedin").href = c.linkedin;
+  document.getElementById("footer-text").textContent =
+    "© " + new Date().getFullYear() + " " + c.name + " · " + c.location;
+</script>
+</body>
+</html>
