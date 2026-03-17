@@ -9,7 +9,6 @@ const CONTENT = {
   title: "Product Owner",
   tagline: "13+ years turning complex business problems into products people love — across Telecom, Fintech, and EdTech.",
   email: "naren_sn@hotmail.com",
-  mobile: "+91-9659362360"
   linkedin: "https://www.linkedin.com/in/narendran-selvam-846b59167",
   location: "Chennai, Tamil Nadu, India",
 
